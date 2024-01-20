@@ -1,4 +1,5 @@
 import { request } from "http";
+import React from "react";
 
 const BASE_URL = "https://open.api.nexon.com";
 const META_DATA = "/static/fconline/meta";
@@ -9,6 +10,9 @@ const REQUEST_USER_BASIC = "/user/basic";
 const REQUEST_MAXDIVISION = "/user/maxdivision";
 const REQUEST_USER_MATCH = "/user/match";
 
+const REQUEST_MATCHDETAIL = "/match-detail";
+
+// owner
 export const requestID = async (nickname: string) => {
   if (nickname === "") throw new Error("nickname is empty");
 
@@ -87,9 +91,32 @@ export const requestUserMatch = async (
     throw new Error(res.statusText);
   }
   const result = await res.json();
+
   return result;
 };
 
+// match
+export const requestMatchDetail = async (matchid: string) => {
+  if (matchid === "") throw new Error("matchid is empty");
+
+  const res = await fetch(
+    `${BASE_URL}${API_VERSION}${REQUEST_MATCHDETAIL}?matchid=${matchid}`,
+    {
+      headers: {
+        "x-nxopen-api-key": `${process.env.NEXT_PUBLIC_NEXON_DEV_API_KEY}`,
+      },
+    }
+  );
+  if (!res.ok) {
+    console.log(res);
+    throw new Error(res.statusText);
+  }
+  const result = await res.json();
+
+  return result;
+};
+
+// meta
 export const requestMetaMatchtype = async () => {
   const res = await fetch(`${BASE_URL}${META_DATA}/matchtype.json`);
   if (!res.ok) {
