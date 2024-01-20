@@ -15,9 +15,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="ko">
       <head>
         <title>Crack.Run</title>
+        <meta
+          name="FC온라인 구단주 전적검색"
+          content="FC온라인 정보의 모든 것!! Crack.Run"
+        />
       </head>
       <body>{children}</body>
     </html>

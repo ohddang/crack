@@ -11,13 +11,13 @@ const SearchBar: React.FC<{}> = () => {
           type="text"
           name="nickname"
           placeholder="Search..."
-          className="w-full h-full focus:outline-none"
+          className="w-full h-full focus:outline-none -internal-autofill-selected:bg-transparent"
         />
       </div>
 
       <button
         type="submit"
-        className="right-0 w-2/12 h-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        className="right-0 h-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded flex-"
       >
         Search
       </button>
