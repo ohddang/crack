@@ -42,7 +42,9 @@ const Owner: React.FC = () => {
       let allMaxDivision = "";
       result.forEach((element: any) => {
         const { matchType, division, achievementDate } = element;
-        allMaxDivision += `[Max_DIVISION] ${matchType} / ${division} / ${achievementDate} `;
+
+        const year = achievementDate.split("-")[0];
+        allMaxDivision += `[${year}] ${matchType} - ${division} /  `;
       });
       setMaxDivision(allMaxDivision);
     }
@@ -54,6 +56,8 @@ const Owner: React.FC = () => {
     const result: string[] = await requestUserMatch(ouid, matchtype);
     setMatchids(result);
   };
+
+  console.log(matchids.slice(0, 5));
 
   useEffect(() => {
     const nickname: string = searchParams.get("nickname") || "";
@@ -70,12 +74,23 @@ const Owner: React.FC = () => {
 
   return (
     <>
-      <div>{ouid}</div>
-      <div>{nickname}</div>
-      <div>{level}</div>
-      <div>{maxDivision}</div>
-      <div className="flex flex-col items-center">
-        {matchids.map((matchid: string) => {
+      <div className="bg-blue-700 w-8/12 min-w-[490px] rounded-lg text-white">
+        <div className="flex flex-row p-8">
+          <div className="w-4/12">
+            <div>ICON</div>
+            <div>레벨 {level}</div>
+          </div>
+          <div className="w-4/12">
+            <div>{maxDivision}</div>
+            <div>{nickname}</div>
+          </div>
+        </div>
+      </div>
+      <div className="flex justify-center align-middle bg-blue-700/70  w-8/12 min-w-[490px] text-white pt-5 pb-5 rounded">
+        Owner Detail info
+      </div>
+      <div className="flex flex-col items-center w-8/12 min-w-[490px]">
+        {matchids.slice(0, 20).map((matchid: string) => {
           return <Match key={matchid} matchid={matchid} />;
         })}
       </div>
