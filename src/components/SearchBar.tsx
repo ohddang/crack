@@ -4,7 +4,7 @@ const SearchBar: React.FC<{}> = () => {
   return (
     <form
       action="/owner"
-      className="flex flex-row flex-nowrap   w-9/12 h-10 box-borde px-5 gap-3"
+      className="flex flex-row justify-center flex-nowrap w-9/12 min-w-[400px] h-10 box-borde px-5 gap-3"
     >
       <div className="w-10/12 h-full overflow-hidden rounded bg-white px-3">
         <input

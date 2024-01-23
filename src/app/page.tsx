@@ -1,8 +1,10 @@
 import SearchBar from "@/components/SearchBar";
+import Logo from "./Logo";
 
 const Page: React.FC = () => {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-5">
+    <main className="p-20 flex flex-col items-center min-h-screen">
+      <Logo />
       <SearchBar />
     </main>
   );
