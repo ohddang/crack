@@ -50,6 +50,7 @@ const Owner: React.FC = () => {
     }
   };
 
+  // https://han41858.tistory.com/54 web storage 사용하기....
   const getUserMatch = async (ouid: string, matchtype: number = 50) => {
     if (ouid === "") return;
 
@@ -90,7 +91,7 @@ const Owner: React.FC = () => {
         Owner Detail info
       </div>
       <div className="flex flex-col items-center w-8/12 min-w-[490px]">
-        {matchids.slice(0, 20).map((matchid: string) => {
+        {matchids.slice(0, 1).map((matchid: string) => {
           return <Match key={matchid} matchid={matchid} />;
         })}
       </div>
