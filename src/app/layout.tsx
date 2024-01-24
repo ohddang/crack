@@ -1,24 +1,7 @@
 import type { Metadata } from "next";
-import { Inter, Black_Han_Sans } from "next/font/google";
 import "./globals.css";
 import Footer from "./Footer";
-
-// font
-const cls = (...classnames: string[]) => classnames.join(" ");
-
-const inter = Inter({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--inter",
-});
-const black_Han_Sans = Black_Han_Sans({
-  weight: "400",
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--black_Han_Sans",
-});
-
-export const FontClassNames = cls(inter.variable, black_Han_Sans.variable);
+import { FontClassNames } from "./font";
 
 // meta
 export const metadata: Metadata = {
