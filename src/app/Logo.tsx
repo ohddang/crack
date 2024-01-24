@@ -9,7 +9,7 @@ const Logo = () => {
   const ballRef = useRef<HTMLImageElement>(null);
 
   const [crackStyle, setCrackStyle] = useState(
-    "flex items-center top-0 left-0 w-128 h-32 bg-cover bg-[url('/images/crack_off.png')] text-transparent bg-clip-text "
+    "flex items-center top-0 left-0 w-128 h-32 bg-cover bg-[url('/images/crack_off.png')] bg-clip-text text-white/100 transition-colors duration-700 ease-in-out "
   );
   const [ballStyle, setBallStyle] = useState(
     "absolute top-5 left-5 top-12 w-12 h-12 opacity-0 transition-opacity duration-500 ease-in-out"
@@ -20,11 +20,6 @@ const Logo = () => {
 
   let animationId = 0;
 
-  const Animation = () => {
-    {
-    }
-  };
-
   const onClickAnimationToggle = () => {
     if (animationToggle.current) {
       animationToggle.current = false;
@@ -32,6 +27,30 @@ const Logo = () => {
       animationToggle.current = true;
     }
     setReDrawTrigger(!reDrawTrigger);
+  };
+
+  const onVisible = () => {
+    if (document.visibilityState === "visible") {
+      animationToggle.current =
+        window.sessionStorage.getItem("animationRunning") === "true";
+    } else {
+      window.sessionStorage.setItem(
+        "animationRunning",
+        String(animationToggle.current)
+      );
+    }
+    initAnimation();
+    setReDrawTrigger(!reDrawTrigger);
+  };
+
+  const initAnimation = () => {
+    setBallStyle(
+      "absolute top-5 left-5 top-12 w-12 h-12 opacity-0 transition-opacity duration-500 ease-in-out"
+    );
+    setCrackStyle(
+      `flex items-center top-0 left-0 w-128 h-32 bg-cover bg-[url('/images/crack_on.png')] bg-clip-text text-white/100 transition-colors duration-700 ease-in-out`
+    );
+    cancelAnimationFrame(animationId);
   };
 
   useEffect(() => {
@@ -48,16 +67,6 @@ const Logo = () => {
           const friction = 0.99;
           const bounce = 0.9;
           ball.style.transform = `translate(0px, 0px)`;
-
-          const initAnimation = () => {
-            setBallStyle(
-              "absolute top-5 left-5 top-12 w-12 h-12 opacity-0 transition-opacity duration-500 ease-in-out"
-            );
-            setCrackStyle(
-              `flex items-center top-0 left-0 w-128 h-32 bg-cover bg-[url('/images/crack_on.png')] bg-clip-text text-white/100 transition-colors duration-700 ease-in-out`
-            );
-            cancelAnimationFrame(animationId);
-          };
 
           const animate = () => {
             if (false === animationToggle.current) {
@@ -106,6 +115,13 @@ const Logo = () => {
         }
       }, 10000);
     }
+
+    document.addEventListener("visibilitychange", onVisible);
+
+    return () => {
+      document.removeEventListener("visibilitychange", onVisible);
+      cancelAnimationFrame(animationId);
+    };
   }, []);
 
   return (
@@ -119,7 +135,7 @@ const Logo = () => {
         width={64}
         height={32}
         alt="toggleOn"
-        className="absolute top-5 right-5"
+        className="absolute top-2 right-5"
         onClick={onClickAnimationToggle}
       />
       <div
