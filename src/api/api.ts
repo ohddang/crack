@@ -19,6 +19,8 @@ export const requestID = async (nickname: string) => {
   const res = await fetch(
     `${BASE_URL}${API_VERSION}${REQUEST_ID}?nickname=${nickname}`,
     {
+      cache: "force-cache",
+      next: { revalidate: 3600 },
       headers: {
         "x-nxopen-api-key": `${process.env.NEXT_PUBLIC_NEXON_DEV_API_KEY}`,
       },
@@ -38,6 +40,7 @@ export const requestUserBasic = async (ouid: string) => {
   const res = await fetch(
     `${BASE_URL}${API_VERSION}${REQUEST_USER_BASIC}?ouid=${ouid}`,
     {
+      cache: "force-cache",
       headers: {
         "x-nxopen-api-key": `${process.env.NEXT_PUBLIC_NEXON_DEV_API_KEY}`,
       },
@@ -57,6 +60,7 @@ export const requestMaxDivision = async (ouid: string) => {
   const res = await fetch(
     `${BASE_URL}${API_VERSION}${REQUEST_MAXDIVISION}?ouid=${ouid}`,
     {
+      cache: "force-cache",
       headers: {
         "x-nxopen-api-key": `${process.env.NEXT_PUBLIC_NEXON_DEV_API_KEY}`,
       },
@@ -74,13 +78,14 @@ export const requestUserMatch = async (
   ouid: string,
   matchtype: number = 50,
   offset: number = 0,
-  limit: number = 100
+  limit: number = 20 // TODO : change match count
 ) => {
   if (ouid === "") throw new Error("ouid is empty");
 
   const res = await fetch(
     `${BASE_URL}${API_VERSION}${REQUEST_USER_MATCH}?ouid=${ouid}&matchtype=${matchtype}&offset=${offset}&limit=${limit}`,
     {
+      cache: "force-cache",
       headers: {
         "x-nxopen-api-key": `${process.env.NEXT_PUBLIC_NEXON_DEV_API_KEY}`,
       },
@@ -102,6 +107,7 @@ export const requestMatchDetail = async (matchid: string) => {
   const res = await fetch(
     `${BASE_URL}${API_VERSION}${REQUEST_MATCHDETAIL}?matchid=${matchid}`,
     {
+      cache: "force-cache",
       headers: {
         "x-nxopen-api-key": `${process.env.NEXT_PUBLIC_NEXON_DEV_API_KEY}`,
       },
@@ -118,12 +124,13 @@ export const requestMatchDetail = async (matchid: string) => {
 
 // meta
 export const requestMetaMatchtype = async () => {
-  const res = await fetch(`${BASE_URL}${META_DATA}/matchtype.json`);
+  const res = await fetch(`${BASE_URL}${META_DATA}/matchtype.json`, {
+    cache: "force-cache",
+  });
   if (!res.ok) {
     console.log(res);
     throw new Error(res.statusText);
   }
   const result = await res.json();
-  console.log(result);
   return result;
 };

@@ -14,11 +14,9 @@ const Match: React.FC<MatchProps> = ({ matchid }) => {
   const getMatchDetail = async (matchid: string) => {
     if (matchid === "") return;
 
-    console.log(matchid);
     const result = await requestMatchDetail(matchid);
     const matchDetail: MatchDetail = parseMatchDetail(result);
     setMatchDetail(matchDetail);
-    console.log(matchDetail);
   };
 
   useEffect(() => {

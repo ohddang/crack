@@ -5,7 +5,7 @@ import Image from "next/image";
 
 const logo_height = 300;
 
-const Logo = () => {
+const Logo: React.FC = () => {
   const ballRef = useRef<HTMLImageElement>(null);
 
   const [crackStyle, setCrackStyle] = useState(
@@ -50,6 +50,10 @@ const Logo = () => {
     setCrackStyle(
       `flex items-center top-0 left-0 w-128 h-32 bg-cover bg-[url('/images/crack_on.png')] bg-clip-text text-white/100 transition-colors duration-700 ease-in-out`
     );
+    const ball = ballRef.current;
+    if (ball) {
+      ball.style.transform = `translate(0px, 0px)`;
+    }
     cancelAnimationFrame(animationId);
   };
 
@@ -66,7 +70,6 @@ const Logo = () => {
           const gravity = 0.4;
           const friction = 0.99;
           const bounce = 0.9;
-          ball.style.transform = `translate(0px, 0px)`;
 
           const animate = () => {
             if (false === animationToggle.current) {
