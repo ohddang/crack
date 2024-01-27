@@ -1,36 +1,36 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# <p align="center">Crack FC온라인 전적검색</p>
 
-## Getting Started
+<p align="center"><img src="https://github.com/ohddang/crack/assets/68732996/002a75dc-52db-4787-84e4-941e0533b15b" width="500" /></p>
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🔍 프로젝트 정보
+* React로 만든 첫번째 프로젝트로 React의 기본 훅들과 구조설계를 학습하기 위한 목적으로 시작했다.  
+* 개발기간: 2023.12.13 ~ 2024.1.13(4주)
+<br/>
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 📖 주요기능
+* 랜덤하게 블록을 생성하는 기능 구현  
+* 블록 회전함수 구현  
+* Redux를 이용하여 Stage에 따른 Time값과 Grid Map 데이터 관리  
+<br/>
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🔥 개발 중 겪었던 이슈
+* 구조설계에 대한 고민
+* 이벤트핸들러 사용 시 closure로 인한 이슈
+* 전역데이터의 상태관리
+* font-size 반응형 처리
+<br/>
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## ✏ 기술스택
+<img src="https://img.shields.io/badge/typescript-F7DF1E?style=for-the-badge&logo=typescript&logoColor=black"> <img src="https://img.shields.io/badge/tailwindcss-1572B6?style=for-the-badge&logo=tailwindcss&logoColor=white"> <img src="https://img.shields.io/badge/next-black?style=for-the-badge&logo=nextdojs&logoColor=61DAFB"> 
+<br/>
 
-## Learn More
+## 🎮 배포 주소
+> [Crack 바로가기](https://ohddang.github.io/whiteboard  
+<br/>
 
-To learn more about Next.js, take a look at the following resources:
+## 📝 Blog
+>[블로그 바로가기](https://nth-challenge.tistory.com/category/Next로%20전적검색%20사이트)  
+<br/>
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## ⛵ 이후 업데이트
