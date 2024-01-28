@@ -17,7 +17,7 @@
 <br/>
 
 ## ✏ 기술스택
-<img src="https://img.shields.io/badge/typescript-F7DF1E?style=for-the-badge&logo=typescript&logoColor=black"> <img src="https://img.shields.io/badge/tailwindcss-1572B6?style=for-the-badge&logo=tailwindcss&logoColor=white"> <img src="https://img.shields.io/badge/next-black?style=for-the-badge&logo=nextdojs&logoColor=61DAFB"> 
+<img src="https://img.shields.io/badge/typescript-3178c6?style=for-the-badge&logo=typescript&logoColor=white"> <img src="https://img.shields.io/badge/tailwindcss-1572B6?style=for-the-badge&logo=tailwindcss&logoColor=white"> <img src="https://img.shields.io/badge/next.js-black?style=for-the-badge&logo=nextdotjs&logoColor=white"> 
 <br/>
 
 ## 🎮 배포 주소
