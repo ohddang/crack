@@ -4,21 +4,16 @@
 
 
 ## 🔍 프로젝트 정보
-* React로 만든 첫번째 프로젝트로 React의 기본 훅들과 구조설계를 학습하기 위한 목적으로 시작했다.  
-* 개발기간: 2023.12.13 ~ 2024.1.13(4주)
+* Next 14.0, typescript, tailwindcss를 익히고 rest api를 사용하여 최종적으로 실제 서비스까지 목표로 시작
+* 개발기간: 2024.1.17 ~ 2024.1.26(10일) server component와 client component를 분리하여 데이터를 처리
 <br/>
 
 ## 📖 주요기능
-* 랜덤하게 블록을 생성하는 기능 구현  
-* 블록 회전함수 구현  
-* Redux를 이용하여 Stage에 따른 Time값과 Grid Map 데이터 관리  
+* FC온라인 전적검색  
 <br/>
 
 ## 🔥 개발 중 겪었던 이슈
-* 구조설계에 대한 고민
-* 이벤트핸들러 사용 시 closure로 인한 이슈
-* 전역데이터의 상태관리
-* font-size 반응형 처리
+* Server component에서 data fetching
 <br/>
 
 ## ✏ 기술스택
@@ -26,7 +21,7 @@
 <br/>
 
 ## 🎮 배포 주소
-> [Crack 바로가기](https://ohddang.github.io/whiteboard  
+> [Crack 바로가기](https://crack-run.vercel.app/)  
 <br/>
 
 ## 📝 Blog
