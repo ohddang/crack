@@ -1,6 +1,4 @@
-import { requestMatchDetail } from "@/api/api";
 import Match from "./Match";
-import { MatchDetail, parseMatchDetail } from "./MatchParser";
 
 interface OwnerProps {
   ouid: string;

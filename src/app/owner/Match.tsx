@@ -31,15 +31,22 @@ const Match: React.FC<MatchProps> = async ({ ouid, matchids }) => {
   yellowCards = yellowCards * 0.2;
   redCards = redCards * 0.5;
 
-  const score = foul + yellowCards + redCards;
+  let score = foul + yellowCards + redCards;
+  score = score > 1 ? 1 : score;
+
   const background =
-    score < 0.1 ? "bg-green-500" : score < 0.3 ? "bg-yellow-500" : score < 0.7 ? "bg-orange-500" : "bg-red-500";
+    score > 0.8 ? "bg-red-500" : score > 0.4 ? "bg-orange-500" : score > 0.2 ? "bg-yellow-500" : "bg-green-500";
+  score = (1 - score) * 100;
 
   return (
     <>
-      <div className="flex flex-row w-full">
-        <div className={`align-middle ${background}`}>{`${score} `}</div>
-        <div> 💢</div>
+      <div className="flex flex-col w-full text-center">
+        <strong className="text-sm">매너🌡️</strong>
+        {matchids.length > 19 ? (
+          <strong className={`w-full p-1 text-xl text-center rounded-md ${background}`}>{`${score}`}</strong>
+        ) : (
+          <div className="text-sm">-</div>
+        )}
       </div>
     </>
   );

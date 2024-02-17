@@ -59,8 +59,6 @@ export const parseMatchManerDetail = (ouid: string, data: any): MatchManerDetail
 
   const targetData = data.matchInfo[0].ouid === ouid ? data.matchInfo[0] : data.matchInfo[1];
 
-  console.log(targetData.matchDetail);
-
   matchManner.foul = targetData.matchDetail.foul;
   matchManner.yellowCards = targetData.matchDetail.yellowCards;
   matchManner.redCards = targetData.matchDetail.redCards;
