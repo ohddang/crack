@@ -1,61 +1,46 @@
-"use client";
-
 import { requestMatchDetail } from "@/api/api";
-import React, { useEffect, useState } from "react";
-import { MatchDetail, parseMatchDetail } from "./MatchParser";
+import { MatchManerDetail, parseMatchManerDetail } from "./MatchParser";
 
 interface MatchProps {
-  matchid: string;
+  ouid: string;
+  matchids: string[];
 }
 
-const Match: React.FC<MatchProps> = ({ matchid }) => {
-  const [matchDetail, setMatchDetail] = useState<MatchDetail>();
+const getMatchMannerDetail = async (ouid: string, matchid: string) => {
+  if (matchid === "") return {} as MatchManerDetail;
 
-  const getMatchDetail = async (matchid: string) => {
-    if (matchid === "") return;
+  const result = await requestMatchDetail(matchid);
+  return parseMatchManerDetail(ouid, result);
+};
 
-    const result = await requestMatchDetail(matchid);
-    const matchDetail: MatchDetail = parseMatchDetail(result);
-    setMatchDetail(matchDetail);
-  };
+const Match: React.FC<MatchProps> = async ({ ouid, matchids }) => {
+  if (matchids == undefined || matchids.length === 0) return;
 
-  useEffect(() => {
-    getMatchDetail(matchid);
-  }, [matchid]);
+  let foul = 0;
+  let yellowCards = 0;
+  let redCards = 0;
+
+  for (let i = 0; i < matchids.length; i++) {
+    const mannerData = await getMatchMannerDetail(ouid, matchids[i]);
+    foul += mannerData.foul;
+    yellowCards += mannerData.yellowCards;
+    redCards += mannerData.redCards;
+  }
+
+  foul = foul / (matchids.length * 5);
+  yellowCards = yellowCards * 0.2;
+  redCards = redCards * 0.5;
+
+  const score = foul + yellowCards + redCards;
+  const background =
+    score < 0.1 ? "bg-green-500" : score < 0.3 ? "bg-yellow-500" : score < 0.7 ? "bg-orange-500" : "bg-red-500";
 
   return (
     <>
       <div className="flex flex-row w-full">
-        <div className="flex flex-col justify-center align-middle text-xs w-2/12 text-center">
-          <div>{matchDetail?.date.split("T")[0]}</div>
-          <div>{matchDetail?.date.split("T")[1]}</div>
-        </div>
-        <div
-          className={`${
-            matchDetail?.matchInfo[0].matchResult === "승"
-              ? "bg-green-700/80 w-5/12"
-              : "bg-red-700/80 w-5/12"
-          }`}
-        >
-          <div className="flex flex-row justify-between w-full">
-            <div>{matchDetail?.matchInfo[0].nickName}</div>
-            <div>{matchDetail?.matchInfo[0].goalTotal}</div>
-          </div>
-        </div>
-        <div
-          className={`${
-            matchDetail?.matchInfo[1].matchResult === "승"
-              ? "bg-green-700/80 w-5/12"
-              : "bg-red-700/80 w-5/12"
-          }`}
-        >
-          <div className="flex flex-row justify-between w-full">
-            <div>{matchDetail?.matchInfo[1].goalTotal}</div>
-            <div>{matchDetail?.matchInfo[1].nickName}</div>
-          </div>
-        </div>
+        <div className={`align-middle ${background}`}>{`${score} `}</div>
+        <div> 💢</div>
       </div>
-      <br />
     </>
   );
 };

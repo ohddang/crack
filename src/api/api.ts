@@ -1,6 +1,3 @@
-import { request } from "http";
-import React from "react";
-
 const BASE_URL = "https://open.api.nexon.com";
 const META_DATA = "/static/fconline/meta";
 const API_VERSION = "/fconline/v1";
@@ -16,16 +13,11 @@ const REQUEST_MATCHDETAIL = "/match-detail";
 export const requestID = async (nickname: string) => {
   if (nickname === "") throw new Error("nickname is empty");
 
-  const res = await fetch(
-    `${BASE_URL}${API_VERSION}${REQUEST_ID}?nickname=${nickname}`,
-    {
-      cache: "force-cache",
-      next: { revalidate: 3600 },
-      headers: {
-        "x-nxopen-api-key": `${process.env.NEXT_PUBLIC_NEXON_DEV_API_KEY}`,
-      },
-    }
-  );
+  const res = await fetch(`${BASE_URL}${API_VERSION}${REQUEST_ID}?nickname=${nickname}`, {
+    headers: {
+      "x-nxopen-api-key": `${process.env.NEXT_PUBLIC_NEXON_DEV_API_KEY}`,
+    },
+  });
   if (!res.ok) {
     console.log(res);
     throw new Error(res.statusText);
@@ -37,15 +29,11 @@ export const requestID = async (nickname: string) => {
 export const requestUserBasic = async (ouid: string) => {
   if (ouid === "") throw new Error("ouid is empty");
 
-  const res = await fetch(
-    `${BASE_URL}${API_VERSION}${REQUEST_USER_BASIC}?ouid=${ouid}`,
-    {
-      cache: "force-cache",
-      headers: {
-        "x-nxopen-api-key": `${process.env.NEXT_PUBLIC_NEXON_DEV_API_KEY}`,
-      },
-    }
-  );
+  const res = await fetch(`${BASE_URL}${API_VERSION}${REQUEST_USER_BASIC}?ouid=${ouid}`, {
+    headers: {
+      "x-nxopen-api-key": `${process.env.NEXT_PUBLIC_NEXON_DEV_API_KEY}`,
+    },
+  });
   if (!res.ok) {
     console.log(res);
     throw new Error(res.statusText);
@@ -57,15 +45,11 @@ export const requestUserBasic = async (ouid: string) => {
 export const requestMaxDivision = async (ouid: string) => {
   if (ouid === "") throw new Error("ouid is empty");
 
-  const res = await fetch(
-    `${BASE_URL}${API_VERSION}${REQUEST_MAXDIVISION}?ouid=${ouid}`,
-    {
-      cache: "force-cache",
-      headers: {
-        "x-nxopen-api-key": `${process.env.NEXT_PUBLIC_NEXON_DEV_API_KEY}`,
-      },
-    }
-  );
+  const res = await fetch(`${BASE_URL}${API_VERSION}${REQUEST_MAXDIVISION}?ouid=${ouid}`, {
+    headers: {
+      "x-nxopen-api-key": `${process.env.NEXT_PUBLIC_NEXON_DEV_API_KEY}`,
+    },
+  });
   if (!res.ok) {
     console.log(res);
     throw new Error(res.statusText);
@@ -104,15 +88,11 @@ export const requestUserMatch = async (
 export const requestMatchDetail = async (matchid: string) => {
   if (matchid === "") throw new Error("matchid is empty");
 
-  const res = await fetch(
-    `${BASE_URL}${API_VERSION}${REQUEST_MATCHDETAIL}?matchid=${matchid}`,
-    {
-      cache: "force-cache",
-      headers: {
-        "x-nxopen-api-key": `${process.env.NEXT_PUBLIC_NEXON_DEV_API_KEY}`,
-      },
-    }
-  );
+  const res = await fetch(`${BASE_URL}${API_VERSION}${REQUEST_MATCHDETAIL}?matchid=${matchid}`, {
+    headers: {
+      "x-nxopen-api-key": `${process.env.NEXT_PUBLIC_NEXON_DEV_API_KEY}`,
+    },
+  });
   if (!res.ok) {
     console.log(res);
     throw new Error(res.statusText);
@@ -125,7 +105,9 @@ export const requestMatchDetail = async (matchid: string) => {
 // meta
 export const requestMetaMatchtype = async () => {
   const res = await fetch(`${BASE_URL}${META_DATA}/matchtype.json`, {
-    cache: "force-cache",
+    headers: {
+      "x-nxopen-api-key": `${process.env.NEXT_PUBLIC_NEXON_DEV_API_KEY}`,
+    },
   });
   if (!res.ok) {
     console.log(res);

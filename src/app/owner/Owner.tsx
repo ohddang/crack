@@ -1,41 +1,31 @@
+import { requestMatchDetail } from "@/api/api";
 import Match from "./Match";
+import { MatchDetail, parseMatchDetail } from "./MatchParser";
 
 interface OwnerProps {
-  id: string;
+  ouid: string;
   nickname: string;
   level: number;
-  maxDivision: string;
   matchids: string[];
 }
 
-const Owner: React.FC<OwnerProps> = ({
-  id,
-  nickname,
-  level,
-  maxDivision,
-  matchids,
-}) => {
+const Owner: React.FC<OwnerProps> = ({ ouid, nickname, level, matchids }) => {
   return (
     <>
-      <div className="bg-blue-700 w-8/12 min-w-[490px] rounded-lg text-white">
-        <div className="flex flex-row p-8">
-          <div className="w-4/12">
-            <div>ICON</div>
-            <div>레벨 {level}</div>
+      <div className="w-8/12 min-w-[490px] rounded-lg text-color bg-gradient-to-r from-slate-400 to-transparent">
+        <div className="flex flex-row justify-between items-center">
+          <div className="flex flex-row p-8 flex-start gap-2">
+            <div>
+              <strong className="text-2xl">{nickname}</strong>
+            </div>
+            <div>
+              <div className="text-sm">Lv {level}</div>
+            </div>
           </div>
-          <div className="w-4/12">
-            <div>{maxDivision}</div>
-            <div>{nickname}</div>
+          <div>
+            <Match ouid={ouid} matchids={matchids} />
           </div>
         </div>
-      </div>
-      <div className="flex justify-center align-middle bg-blue-700/70  w-8/12 min-w-[490px] text-white pt-5 pb-5 rounded">
-        Owner Detail info
-      </div>
-      <div className="flex flex-col items-center w-8/12 min-w-[490px]">
-        {matchids.map((matchid: string) => {
-          return <Match key={matchid} matchid={matchid} />;
-        })}
       </div>
     </>
   );

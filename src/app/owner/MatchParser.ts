@@ -12,6 +12,12 @@ export interface MatchDetail {
   matchInfo: MatchOwnerDetail[];
 }
 
+export interface MatchManerDetail {
+  foul: number;
+  yellowCards: number;
+  redCards: number;
+}
+
 const initMatchDetail: MatchDetail = {
   date: "",
   matchType: 0,
@@ -40,4 +46,24 @@ export const parseMatchDetail = (matchDetail: any): MatchDetail => {
   });
 
   return matchInfo;
+};
+
+export const parseMatchManerDetail = (ouid: string, data: any): MatchManerDetail => {
+  const matchManner: MatchManerDetail = {
+    foul: 0,
+    yellowCards: 0,
+    redCards: 0,
+  };
+
+  if (undefined == data) return matchManner;
+
+  const targetData = data.matchInfo[0].ouid === ouid ? data.matchInfo[0] : data.matchInfo[1];
+
+  console.log(targetData.matchDetail);
+
+  matchManner.foul = targetData.matchDetail.foul;
+  matchManner.yellowCards = targetData.matchDetail.yellowCards;
+  matchManner.redCards = targetData.matchDetail.redCards;
+
+  return matchManner;
 };
