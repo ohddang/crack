@@ -10,8 +10,7 @@ const config: Config = {
     extend: {
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        "gradient-conic": "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       keyframes: {
         shake: {
@@ -38,8 +37,8 @@ const config: Config = {
       },
     },
     fontFamily: {
-      inter: ["var(--inter)"],
-      black_Han_Sans: ["var(--black_Han_Sans)"],
+      inter: ["inter"],
+      black_Han_Sans: ["black_Han_Sans"],
     },
   },
   plugins: [],

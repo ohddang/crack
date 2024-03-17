@@ -18,7 +18,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <title>Crack.Run</title>
         <meta name="FC온라인 구단주 전적검색" content="FC온라인 정보의 모든 것!! Crack.Run" />
       </head>
-      <body className={FontClassNames}>
+      <body className="font-black_Han_Sans">
         <Nav />
         {children}
         <Footer />

@@ -15,4 +15,4 @@ const black_Han_Sans = Black_Han_Sans({
   variable: "--black_Han_Sans",
 });
 
-export const FontClassNames = cls(inter.variable, black_Han_Sans.variable);
+export const FontClassNames = cls(black_Han_Sans.variable, inter.variable);
