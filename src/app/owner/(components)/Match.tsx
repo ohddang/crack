@@ -7,13 +7,13 @@ interface MatchProps {
 }
 
 const getMatchMannerDetail = async (ouid: string, matchid: string) => {
-  if (matchid === "") return {} as MatchManerDetail;
+  if (matchid === "") return null;
 
   const result = await requestMatchDetail(matchid);
   return parseMatchManerDetail(ouid, result);
 };
 
-const Match: React.FC<MatchProps> = async ({ ouid, matchids }) => {
+export default async function Match({ ouid, matchids }: MatchProps) {
   if (matchids == undefined || matchids.length === 0) return;
 
   let foul = 0;
@@ -22,6 +22,8 @@ const Match: React.FC<MatchProps> = async ({ ouid, matchids }) => {
 
   for (let i = 0; i < matchids.length; i++) {
     const mannerData = await getMatchMannerDetail(ouid, matchids[i]);
+    if (mannerData == null) continue;
+
     foul += mannerData.foul;
     yellowCards += mannerData.yellowCards;
     redCards += mannerData.redCards;
@@ -50,6 +52,4 @@ const Match: React.FC<MatchProps> = async ({ ouid, matchids }) => {
       </div>
     </>
   );
-};
-
-export default Match;
+}

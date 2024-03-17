@@ -1,4 +1,4 @@
-import Owner from "./Owner";
+import Owner from "./(components)/Owner";
 
 import { requestID, requestUserBasic, requestUserMatch } from "@/api/api";
 
@@ -7,7 +7,7 @@ interface PageProps {
   searchParams: { nickname: string };
 }
 
-const Page: React.FC<PageProps> = async ({ params, searchParams }) => {
+export default async function Page({ params, searchParams }: PageProps) {
   const nickname = searchParams.nickname;
   if (nickname === null) return;
 
@@ -15,7 +15,6 @@ const Page: React.FC<PageProps> = async ({ params, searchParams }) => {
   if (ouid === "") return;
 
   const { level } = await requestUserBasic(ouid);
-
   const matchids: string[] = await requestUserMatch(ouid, 50, 0, 20); // TODO : find cache
 
   return (
@@ -23,6 +22,4 @@ const Page: React.FC<PageProps> = async ({ params, searchParams }) => {
       <Owner ouid={ouid} nickname={nickname} level={level} matchids={matchids} />
     </main>
   );
-};
-
-export default Page;
+}

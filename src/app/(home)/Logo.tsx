@@ -2,10 +2,11 @@
 
 import { useRef, useEffect, useState } from "react";
 import Image from "next/image";
+import { Switch } from "@headlessui/react";
 
 const logo_height = 300;
 
-const Logo: React.FC = () => {
+export default function Logo() {
   const ballRef = useRef<HTMLImageElement>(null);
 
   const [crackStyle, setCrackStyle] = useState(
@@ -31,22 +32,16 @@ const Logo: React.FC = () => {
 
   const onVisible = () => {
     if (document.visibilityState === "visible") {
-      animationToggle.current =
-        window.sessionStorage.getItem("animationRunning") === "true";
+      animationToggle.current = window.sessionStorage.getItem("animationRunning") === "true";
     } else {
-      window.sessionStorage.setItem(
-        "animationRunning",
-        String(animationToggle.current)
-      );
+      window.sessionStorage.setItem("animationRunning", String(animationToggle.current));
     }
     initAnimation();
     setReDrawTrigger(!reDrawTrigger);
   };
 
   const initAnimation = () => {
-    setBallStyle(
-      "absolute top-5 left-5 top-12 w-12 h-12 opacity-0 transition-opacity duration-500 ease-in-out"
-    );
+    setBallStyle("absolute top-5 left-5 top-12 w-12 h-12 opacity-0 transition-opacity duration-500 ease-in-out");
     setCrackStyle(
       `flex items-center top-0 left-0 w-128 h-32 bg-cover bg-[url('/images/crack_on.png')] bg-clip-text text-white/100 transition-colors duration-700 ease-in-out`
     );
@@ -129,33 +124,26 @@ const Logo: React.FC = () => {
 
   return (
     <div className="flex justify-center items-center w-full h-32">
-      <Image
-        src={
-          animationToggle.current
-            ? "/images/toggle_on.svg"
-            : "/images/toggle_off.svg"
-        }
-        width={64}
-        height={32}
-        alt="toggleOn"
-        className="absolute top-2 right-5"
-        onClick={onClickAnimationToggle}
-      />
+      <Switch
+        checked={animationToggle.current}
+        onChange={onClickAnimationToggle}
+        className={`absolute flex flex-row items-center top-20 right-5 w-11 h-6 rounded-full ${
+          animationToggle.current ? "bg-red-700" : "bg-gray-400"
+        }`}>
+        <span className="sr-only">Enable notifications</span>
+        <span
+          className={`${
+            animationToggle.current ? "translate-x-6" : "translate-x-1"
+          } inline-block h-4 w-4 transform rounded-full bg-white transition`}
+        />
+      </Switch>
       <div
         className={`font-black_Han_Sans text-8xl h-32 drop-shadow-[6px_6px_3px_rgba(0,0,0,0.4)] text-white ${
           shake ? "animate-shake" : ""
-        }`}
-      >
+        }`}>
         <div className={crackStyle}>CRACK</div>
       </div>
-      <img
-        src="/images/football.png"
-        alt="football"
-        className={ballStyle}
-        ref={ballRef}
-      />
+      <img src="/images/football.png" alt="football" className={ballStyle} ref={ballRef} />
     </div>
   );
-};
-
-export default Logo;
+}

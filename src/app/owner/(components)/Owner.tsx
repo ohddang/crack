@@ -7,7 +7,7 @@ interface OwnerProps {
   matchids: string[];
 }
 
-const Owner: React.FC<OwnerProps> = ({ ouid, nickname, level, matchids }) => {
+export default function Owner({ ouid, nickname, level, matchids }: OwnerProps) {
   return (
     <>
       <div className="w-8/12 min-w-[490px] rounded-lg text-color bg-gradient-to-r from-slate-400 to-transparent">
@@ -27,6 +27,4 @@ const Owner: React.FC<OwnerProps> = ({ ouid, nickname, level, matchids }) => {
       </div>
     </>
   );
-};
-
-export default Owner;
+}

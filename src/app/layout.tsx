@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Footer from "./Footer";
+import Footer from "./(home)/Footer";
 import { FontClassNames } from "./font";
+import Nav from "./(home)/Nav";
 
 // meta
 export const metadata: Metadata = {
@@ -10,21 +11,15 @@ export const metadata: Metadata = {
 };
 
 // layout
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ko">
       <head>
         <title>Crack.Run</title>
-        <meta
-          name="FC온라인 구단주 전적검색"
-          content="FC온라인 정보의 모든 것!! Crack.Run"
-        />
+        <meta name="FC온라인 구단주 전적검색" content="FC온라인 정보의 모든 것!! Crack.Run" />
       </head>
       <body className={FontClassNames}>
+        <Nav />
         {children}
         <Footer />
       </body>
