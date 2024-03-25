@@ -1,0 +1,11 @@
+import NextAuth from "next-auth";
+import { PrismaAdapter } from "@auth/prisma-adapter";
+import google from "next-auth/providers/google";
+import CredentialsProvider from "next-auth/providers/credentials";
+
+export const { handlers, auth, signIn, signOut } = NextAuth((req) => {
+  if (req) {
+    console.log(req);
+  }
+  return { providers: [google] };
+});

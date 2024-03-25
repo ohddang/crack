@@ -143,7 +143,7 @@ export default function Logo() {
         }`}>
         <div className={crackStyle}>CRACK</div>
       </div>
-      <img src="/images/football.png" alt="football" className={ballStyle} ref={ballRef} />
+      <Image src="/images/football.png" alt="football" className={ballStyle} ref={ballRef} width="32" height="32" />
     </div>
   );
 }
