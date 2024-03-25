@@ -1,4 +1,4 @@
-import { requestMatchDetail } from "@/api/api";
+import { requestMatchDetail } from "@/app/api/api";
 import { MatchManerDetail, parseMatchManerDetail } from "./MatchParser";
 
 interface MatchProps {

@@ -2,7 +2,7 @@
 
 import * as z from "zod";
 import Link from "next/link";
-import { LoginButton } from "./LoginButton";
+import { useState, useTransition } from "react";
 import Social from "./Social";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -17,8 +17,20 @@ export default function LoginForm() {
     },
   });
 
+  const [error, setError] = useState<string | undefined>("");
+  const [success, setSuccess] = useState<string | undefined>("");
+  const [isPending, setTransition] = useTransition();
+
   const onSubmit = (values: z.infer<typeof LoginSchema>) => {
-    login(values);
+    setError("");
+    setSuccess("");
+
+    setTransition(() => {
+      login(values).then((data) => {
+        setError(data.error);
+        setSuccess(data.success);
+      });
+    });
   };
 
   return (
@@ -31,11 +43,15 @@ export default function LoginForm() {
               {...register("email")}
               type="email"
               name="email"
+              disabled={isPending}
               placeholder="이메일"
               className="border border-gray-300 p-3 rounded mb-5"
             />
 
-            <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white p-3 rounded mb-3 w-full">
+            <button
+              type="submit"
+              disabled={isPending}
+              className="bg-blue-500 hover:bg-blue-700 text-white p-3 rounded mb-3 w-full">
               <strong>이메일로 시작하기</strong>
             </button>
 
@@ -48,7 +64,7 @@ export default function LoginForm() {
             <Social />
             <span className="text-xs text-center">
               아직 회원이 아니신가요?{" "}
-              <Link className="text-blue-500" href={{ pathname: "/signup" }}>
+              <Link className="text-blue-500" href={{ pathname: "/register" }}>
                 회원가입
               </Link>
             </span>

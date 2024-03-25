@@ -2,6 +2,14 @@
 
 import * as z from "zod";
 
-export const login = (values: any) => {
-  console.log("login server action", values);
+import { LoginSchema } from "@/schemas";
+
+export const login = async (values: z.infer<typeof LoginSchema>) => {
+  const validateFields = LoginSchema.safeParse(values);
+
+  if (!validateFields.success) {
+    return { error: "Invaild fields" };
+  }
+
+  return { success: "Email sent" };
 };

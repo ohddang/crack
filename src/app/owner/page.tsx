@@ -1,6 +1,6 @@
 import Owner from "./(components)/Owner";
 
-import { requestID, requestUserBasic, requestUserMatch } from "@/api/api";
+import { requestID, requestUserBasic, requestUserMatch } from "@/app/api/api";
 
 interface PageProps {
   params: {};
