@@ -27,8 +27,8 @@ export default function LoginForm() {
 
     setTransition(() => {
       login(values).then((data) => {
-        setError(data.error);
-        setSuccess(data.success);
+        if (data?.error) setError(data?.error);
+        // setSuccess(data.success);
       });
     });
   };
@@ -47,7 +47,16 @@ export default function LoginForm() {
               placeholder="이메일"
               className="border border-gray-300 p-3 rounded mb-5"
             />
-
+            <input
+              {...register("password")}
+              type="password"
+              name="password"
+              disabled={isPending}
+              placeholder="비밀번호"
+              className="border border-gray-300 p-3 rounded mb-5"
+            />
+            {error && <span className="text-red-500">{error}</span>}
+            {success && <span className="text-green-500">{success}</span>}
             <button
               type="submit"
               disabled={isPending}
@@ -64,7 +73,7 @@ export default function LoginForm() {
             <Social />
             <span className="text-xs text-center">
               아직 회원이 아니신가요?{" "}
-              <Link className="text-blue-500" href={{ pathname: "/register" }}>
+              <Link className="text-blue-500" href={{ pathname: "/auth/register" }}>
                 회원가입
               </Link>
             </span>

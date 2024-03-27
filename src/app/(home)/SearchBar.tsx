@@ -10,7 +10,6 @@ const SearchBar: React.FC = () => {
       action="/owner"
       className="flex flex-row justify-center flex-nowrap w-9/12 min-w-[400px] h-10 box-borde px-5 gap-3"
       onSubmit={(e) => {
-        // setUserInfo({ nickname: inputRef.current?.value || "", ouid: "" });
         window.localStorage.setItem("nickname", inputRef.current?.value || "");
       }}>
       <div className="w-10/12 h-full overflow-hidden rounded bg-white px-3">
